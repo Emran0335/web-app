@@ -1,10 +1,6 @@
 import {
-  ArrowDropDownOutlined,
-  DarkModeOutlined,
-  LightModeOutlined,
-  Menu as MenuIcon,
-  Search,
-  SettingsOutlined
+  ArrowDropDownOutlined, Menu as MenuIcon,
+  Search
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -19,13 +15,10 @@ import {
   useTheme
 } from "@mui/material";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import profile from "../assets/emran.png";
 import Flexbetween from "../components/cusComponent/Flexbetween";
-import { setMode } from "../state/global";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const dispatch = useDispatch();
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -65,17 +58,6 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         </Flexbetween>
         {/* RIGHT SIDE */}
         <Flexbetween gap="1.5rem">
-          <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === "dark" ? (
-              <DarkModeOutlined sx={{ fontSize: "25px" }} />
-            ) : (
-              <LightModeOutlined sx={{ fontSize: "25px" }} />
-            )}
-          </IconButton>
-          <IconButton>
-            <SettingsOutlined sx={{ fontSize: "25px" }} />
-          </IconButton>
-          <Flexbetween>
             <Button
               onClick={handleClick}
               sx={{
@@ -121,7 +103,6 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             >
               <MenuItem onClick={handleClose}>Log Out</MenuItem>
             </Menu>
-          </Flexbetween>
         </Flexbetween>
       </Toolbar>
     </AppBar>

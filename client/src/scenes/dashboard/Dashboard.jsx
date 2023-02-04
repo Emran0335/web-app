@@ -5,13 +5,13 @@ import {
   PointOfSale,
   Traffic
 } from "@mui/icons-material";
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import BreakdownChart from "../../components/BreakdownChart";
 import FlexBetween from "../../components/cusComponent/Flexbetween";
 import Header from "../../components/Header";
 import OverviewChart from "../dashboard/OverviewChart";
 import StatBox from "../dashboard/StatBox";
-
 const columns = [
   { field: "_id", headerName: "ID", flex: 1 },
   { field: "userId", headerName: "User ID", flex: 1 },
@@ -150,6 +150,22 @@ const Dashboard = () => {
           rows={[]}
           columns={columns} 
         />
+      </Box>
+      <Box>
+        <Typography
+          variant="h6"
+          sx={{color: theme.palette.secondary[100]}}
+        >
+          Sales By Category
+        </Typography>
+        <BreakdownChart isDashboard={true}/>
+        <Typography
+          p="0 0.6rem"
+          fontSize="0.8rem"
+          sx={{color: theme.palette.secondary[200]}}
+        >
+          Breakdown of real states and information via category for revenue made for this year and total sales.
+        </Typography>
       </Box>
     </Box>
   );

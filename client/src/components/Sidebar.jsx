@@ -3,12 +3,15 @@ import {
   CalendarMonthOutlined,
   ChevronLeft,
   ChevronRightOutlined,
+  DarkModeOutlined,
   Groups2Outlined,
   HomeOutlined,
+  LightModeOutlined,
   PieChartOutlineOutlined,
   PointOfSaleOutlined,
   PublicOutlined,
   ReceiptLongOutlined,
+  SettingsOutlined,
   ShoppingCartOutlined,
   TodayOutlined,
   TrendingUpOutlined
@@ -26,7 +29,9 @@ import {
   useTheme
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { setMode } from "../state/global";
 import Flexbetween from "./cusComponent/Flexbetween";
 
 const navItems = [
@@ -98,6 +103,7 @@ const Sidebar = ({
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -176,15 +182,31 @@ const Sidebar = ({
                       >
                         {icon}
                       </ListItemIcon>
-                      <ListItemText primary={text}/>
+                      <ListItemText primary={text} />
                       {active === lowerCaseText && (
-                        <ChevronRightOutlined sx={{ml: 'auto'}} />
+                        <ChevronRightOutlined sx={{ ml: "auto" }} />
                       )}
                     </ListItemButton>
                   </ListItem>
                 );
               })}
             </List>
+          </Box>
+          <Box>
+            <Flexbetween
+              p="2rem 2.50rem"
+            >
+              <IconButton onClick={() => dispatch(setMode())}>
+                {theme.palette.mode === "dark" ? (
+                  <DarkModeOutlined sx={{ fontSize: "25px" }} />
+                ) : (
+                  <LightModeOutlined sx={{ fontSize: "25px" }} />
+                )}
+              </IconButton>
+              <IconButton>
+                <SettingsOutlined sx={{ fontSize: "25px" }} />
+              </IconButton>
+            </Flexbetween>
           </Box>
         </Drawer>
       )}
